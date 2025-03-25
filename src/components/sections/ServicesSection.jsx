@@ -1,7 +1,7 @@
 // src/components/sections/ServicesSection.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardHeader, CardBody } from '../ui/Card';
+import Card, { CardHeader, CardBody } from '../ui/Card';
 import { H2, H3, Body } from '../ui/Typography';
 
 const ServiceCard = ({ title, description, icon, metrics }) => {
