@@ -27,7 +27,17 @@ export default {
         display: ['Montserrat', 'sans-serif'],
         sans: ['Inter', 'sans-serif'],
         serif: ['Georgia', 'serif'],
-      }
+      },
+      letterSpacing: {
+        tighter: '-0.05em',
+        looser: '0.05em',
+      },
+      boxShadow: {
+        'card': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+      },
+      borderRadius: {
+        'card': '8px',
+      },
     },
   },
   plugins: [],

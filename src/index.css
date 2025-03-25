@@ -1,3 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans text-gray-700 leading-relaxed;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold tracking-tighter text-ocean-dark;
+  }
+  
+  p {
+    @apply tracking-looser;
+  }
+}
+
+/* Additional custom styles */
+.bg-topo-pattern {
+  background-image: url('/images/topo-pattern.svg');
+  background-size: 500px;
+  background-repeat: repeat;
+  background-opacity: 0.05;
+}
+
+.bg-wave-pattern {
+  background-image: url('/images/wave-pattern.svg');
+  background-size: 400px;
+  background-repeat: repeat;
+  background-opacity: 0.05;
+}
