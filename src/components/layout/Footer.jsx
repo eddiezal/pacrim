@@ -4,134 +4,150 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-
+  
+  // Quick links
+  const quickLinks = [
+    { name: 'Home', path: '/' },
+    { name: 'Services', path: '/services' },
+    { name: 'Case Studies', path: '/case-studies' },
+    { name: 'Testimonials', path: '/testimonials' },
+    { name: 'Contact', path: '/contact' },
+    { name: 'Privacy Policy', path: '/privacy' },
+  ];
+  
+  // Social media links
+  const socialLinks = [
+    { name: 'LinkedIn', icon: 'linkedin', url: 'https://linkedin.com/' },
+    { name: 'Twitter', icon: 'twitter', url: 'https://twitter.com/' },
+    { name: 'Facebook', icon: 'facebook', url: 'https://facebook.com/' },
+  ];
+  
+  // Certification badges
+  const certifications = [
+    { name: 'Veteran-Owned Business', image: '/src/assets/images/certification-veteran.png' },
+    { name: 'DOE Partner', image: '/src/assets/images/certification-doe.png' },
+    { name: 'ISO Certified', image: '/src/assets/images/certification-iso.png' },
+  ];
+  
+  // Social icon component
+  const SocialIcon = ({ icon }) => {
+    const icons = {
+      linkedin: (
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+        </svg>
+      ),
+      twitter: (
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723 10.058 10.058 0 01-3.127 1.195 4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+        </svg>
+      ),
+      facebook: (
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.987C18.343 21.128 22 16.991 22 12z" clipRule="evenodd"/>
+        </svg>
+      ),
+    };
+    
+    return icons[icon] || null;
+  };
+  
   return (
-    <footer className="bg-gradient-to-r from-ocean-dark to-ocean-DEFAULT text-white py-16">
+    <footer className="bg-ocean-gradient text-white pt-12 pb-6">
       <div className="container mx-auto px-4">
-        {/* Main footer content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {/* Company info */}
+        <div className="grid md:grid-cols-3 gap-8 mb-8">
+          {/* Contact Information */}
           <div>
-            <div className="flex items-center mb-6">
-              <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-ocean-dark font-bold mr-3">
-                PL
-              </div>
-              <span className="text-xl font-display font-bold">PacRim Labs</span>
-            </div>
-            <p className="text-white/80 mb-6">
-              Veteran-owned clean energy consultancy driving sustainable solutions across the West Coast.
-            </p>
-            <div className="flex space-x-4">
-              <a 
-                href="https://linkedin.com/company/pacrimlabs" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
-                aria-label="LinkedIn"
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M6 9H2V21H6V9Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M4 6C5.10457 6 6 5.10457 6 4C6 2.89543 5.10457 2 4 2C2.89543 2 2 2.89543 2 4C2 5.10457 2.89543 6 4 6Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <h3 className="font-montserrat font-bold text-xl mb-4 border-b border-sand-light/30 pb-2">
+              Contact Us
+            </h3>
+            <ul className="space-y-3">
+              <li className="flex items-start">
+                <svg className="w-5 h-5 mt-1 mr-3 text-sand-light" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-              </a>
-              <a 
-                href="https://twitter.com/pacrimlabs" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
-                aria-label="Twitter"
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M23 3C22.0424 3.67548 20.9821 4.19211 19.86 4.53C19.2577 3.83751 18.4573 3.34669 17.567 3.12393C16.6767 2.90116 15.7395 2.9572 14.8821 3.28445C14.0247 3.61171 13.2884 4.1944 12.773 4.95372C12.2575 5.71303 11.9877 6.61234 12 7.53V8.53C10.2426 8.57557 8.50127 8.18581 6.93101 7.39545C5.36074 6.60508 4.01032 5.43864 3 4C3 4 -1 13 8 17C5.94053 18.398 3.48716 19.0989 1 19C10 24 21 19 21 7.5C20.9991 7.22145 20.9723 6.94359 20.92 6.67C21.9406 5.66349 22.6608 4.39271 23 3Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <span>123 Coastal Way<br />Seattle, WA 98101</span>
+              </li>
+              <li className="flex items-start">
+                <svg className="w-5 h-5 mt-1 mr-3 text-sand-light" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-              </a>
+                <span>info@pacrimlabs.com</span>
+              </li>
+              <li className="flex items-start">
+                <svg className="w-5 h-5 mt-1 mr-3 text-sand-light" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                <span>(206) 555-0123</span>
+              </li>
+            </ul>
+            
+            {/* Social Media Links */}
+            <div className="mt-6 flex space-x-4">
+              {socialLinks.map((social) => (
+                <a 
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-sand-light transition-colors"
+                  aria-label={social.name}
+                >
+                  <SocialIcon icon={social.icon} />
+                </a>
+              ))}
             </div>
           </div>
-
-          {/* Contact info */}
-          <div>
-            <h3 className="text-white font-display font-bold text-lg mb-6">Contact Us</h3>
-            <address className="not-italic text-white/80">
-              <p className="mb-3">123 Pacific Avenue</p>
-              <p className="mb-3">Portland, OR 97204</p>
-              <p className="mb-3">
-                <a href="mailto:info@pacrimlabs.com" className="hover:text-sand-light transition-colors">
-                  info@pacrimlabs.com
-                </a>
-              </p>
-              <p>
-                <a href="tel:+15035551234" className="hover:text-sand-light transition-colors">
-                  (503) 555-1234
-                </a>
-              </p>
-            </address>
-          </div>
-
+          
           {/* Certifications */}
           <div>
-            <h3 className="text-white font-display font-bold text-lg mb-6">Certifications</h3>
-            <div className="space-y-4">
-              <div className="flex items-center">
-                <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center mr-3">
-                  <span className="text-xs font-bold">VO</span>
+            <h3 className="font-montserrat font-bold text-xl mb-4 border-b border-sand-light/30 pb-2">
+              Certifications
+            </h3>
+            <div className="grid grid-cols-3 gap-4">
+              {certifications.map((cert) => (
+                <div key={cert.name} className="flex flex-col items-center">
+                  <div className="w-16 h-16 bg-white/90 rounded-full p-2 flex items-center justify-center mb-2">
+                    <img 
+                      src={cert.image} 
+                      alt={cert.name} 
+                      className="max-w-full max-h-full"
+                    />
+                  </div>
+                  <span className="text-xs text-center text-sand-light">{cert.name}</span>
                 </div>
-                <span className="text-white/80">Veteran-Owned Business</span>
-              </div>
-              <div className="flex items-center">
-                <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center mr-3">
-                  <span className="text-xs font-bold">DOE</span>
-                </div>
-                <span className="text-white/80">DOE Partner</span>
-              </div>
-              <div className="flex items-center">
-                <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center mr-3">
-                  <span className="text-xs font-bold">ISO</span>
-                </div>
-                <span className="text-white/80">ISO Certified</span>
-              </div>
+              ))}
             </div>
           </div>
-
-          {/* Quick links */}
+          
+          {/* Quick Links */}
           <div>
-            <h3 className="text-white font-display font-bold text-lg mb-6">Quick Links</h3>
-            <nav className="grid grid-cols-1 gap-3">
-              <Link to="/" className="text-white/80 hover:text-sand-light transition-colors">
-                Home
-              </Link>
-              <Link to="/services" className="text-white/80 hover:text-sand-light transition-colors">
-                Services
-              </Link>
-              <Link to="/case-studies" className="text-white/80 hover:text-sand-light transition-colors">
-                Case Studies
-              </Link>
-              <Link to="/testimonials" className="text-white/80 hover:text-sand-light transition-colors">
-                Testimonials
-              </Link>
-              <Link to="/contact" className="text-white/80 hover:text-sand-light transition-colors">
-                Contact
-              </Link>
-            </nav>
+            <h3 className="font-montserrat font-bold text-xl mb-4 border-b border-sand-light/30 pb-2">
+              Quick Links
+            </h3>
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-2">
+              {quickLinks.map((link) => (
+                <li key={link.path}>
+                  <Link 
+                    to={link.path}
+                    className="text-sand-light hover:text-white transition-colors flex items-center"
+                  >
+                    <svg className="w-3 h-3 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                    </svg>
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-
-        {/* Bottom footer with copyright and legal links */}
-        <div className="pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-white/60 text-sm mb-4 md:mb-0">
-            &copy; {currentYear} PacRim Labs. All rights reserved.
-          </p>
-          <div className="flex space-x-6">
-            <Link to="/privacy" className="text-white/60 hover:text-white text-sm transition-colors">
-              Privacy Policy
-            </Link>
-            <Link to="/terms" className="text-white/60 hover:text-white text-sm transition-colors">
-              Terms of Service
-            </Link>
-            <Link to="/sitemap" className="text-white/60 hover:text-white text-sm transition-colors">
-              Sitemap
-            </Link>
-          </div>
+        
+        {/* Copyright */}
+        <div className="text-center pt-6 border-t border-sand-light/20 text-sand-light/80 text-sm">
+          <p>© {currentYear} PacRim Labs. All rights reserved.</p>
+          <p className="mt-1">Veteran-owned and West Coast rooted.</p>
         </div>
       </div>
     </footer>
