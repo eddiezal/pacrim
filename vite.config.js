@@ -20,7 +20,7 @@ export default defineConfig({
   
   // Build optimization settings
   build: {
-    minify: 'terser',
+    minify: 'esbuild',
     sourcemap: false,
     cssMinify: true,
     target: 'es2015',
